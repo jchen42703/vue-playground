@@ -3,17 +3,21 @@
     <h1>{{ msg }}</h1>
     <h3>Loading animation + async component should display below</h3>
     <!-- async loading -->
-    <!-- <div v-for="item in itemsList" :key="item.id">
-      <AsyncCard :name="item.name" :retailPrice="item.retailPrice"></AsyncCard>
-    </div> -->
     <AsyncCard></AsyncCard>
     <AsyncCard></AsyncCard>
+
+    <h3>
+      (Manual State Changes) Loading animation + async component should display
+      below
+    </h3>
+    <CardLoader></CardLoader>
   </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from "vue";
 import LoadingAnimation from "@/components/LoadingAnimation.vue";
+import CardLoader from "@/components/CardLoader.vue";
 
 const AsyncCard = defineAsyncComponent({
   loader: () => import("@/components/Card.vue"),
@@ -27,6 +31,7 @@ export default {
   name: "HelloWorld",
   components: {
     AsyncCard,
+    CardLoader,
   },
   props: {
     msg: String,
