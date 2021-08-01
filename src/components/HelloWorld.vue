@@ -1,11 +1,12 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h3>Loading animation + async component should display below</h3>
+    <h3>
+      (With defineAsyncComponent) Loading animation + async component should
+      display below
+    </h3>
     <!-- async loading -->
-    <AsyncCard></AsyncCard>
-    <AsyncCard></AsyncCard>
-
+    <AsyncCardLoader></AsyncCardLoader>
     <h3>
       (Manual State Changes) Loading animation + async component should display
       below
@@ -19,10 +20,9 @@ import { defineAsyncComponent } from "vue";
 import LoadingAnimation from "@/components/LoadingAnimation.vue";
 import CardLoader from "@/components/CardLoader.vue";
 
-const AsyncCard = defineAsyncComponent({
-  loader: () => import("@/components/Card.vue"),
+const AsyncCardLoader = defineAsyncComponent({
+  loader: () => import("@/components/AsyncCardLoader.vue"),
   loadingComponent: LoadingAnimation,
-  errorComponent: LoadingAnimation,
   delay: 0,
   suspensible: false,
 });
@@ -30,35 +30,12 @@ const AsyncCard = defineAsyncComponent({
 export default {
   name: "HelloWorld",
   components: {
-    AsyncCard,
+    AsyncCardLoader,
     CardLoader,
   },
   props: {
     msg: String,
   },
-  // data() {
-  //   return {
-  //     itemsList: [],
-  //   };
-  // },
-  // async mounted() {
-  //   console.log("Calling mounted()....");
-
-  //   const out = await setTimeout(() => {
-  //     this.itemsList = [
-  //       {
-  //         name: "aijsfasjoiasjf",
-  //         retailPrice: "550",
-  //       },
-  //       {
-  //         name: "LLLLLLLL",
-  //         retailPrice: "40",
-  //       },
-  //     ];
-  //     return this.itemsList;
-  //   }, 5000);
-  //   console.log(`Mounted; itemsList: ${out}`);
-  // },
 };
 </script>
 

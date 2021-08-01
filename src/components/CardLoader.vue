@@ -25,27 +25,26 @@ export default {
   async mounted() {
     console.log("CardLoader mounted()");
     await new Promise((resolve) => {
-      setTimeout(this.getItems, 3000);
-      setTimeout(resolve, 500);
+      setTimeout(() => {
+        this.getItems();
+        resolve();
+      }, 3000);
     });
   },
   methods: {
-    async getItems() {
+    getItems() {
       this.loading = true;
-      const out = await setTimeout(() => {
-        console.log("getItems for 3 seconds");
-        this.itemsList = [
-          {
-            name: "Joseph",
-            retailPrice: "5550",
-          },
-          {
-            name: "Joseph",
-            retailPrice: "5550",
-          },
-        ];
-      }, 3000);
-      console.log(`getItems: ${out}`);
+      this.itemsList = [
+        {
+          name: "Joseph",
+          retailPrice: "5550",
+        },
+        {
+          name: "Joseph",
+          retailPrice: "5550",
+        },
+      ];
+      console.log(`getItems: ${JSON.stringify(this.itemsList)}`);
       this.loading = false;
     },
   },
