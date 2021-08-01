@@ -12,8 +12,8 @@ export default {
     };
   },
   async mounted() {
-    await this.getItems();
     console.log("AsyncCardLoader mounted()");
+    await this.getItems();
   },
   methods: {
     async getItems() {
